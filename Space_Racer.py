@@ -8,12 +8,12 @@ def startScreen():
 
     #Set up introduction screen
 
-    setBackgroundImage("intro_background.png")
+    setBackgroundImage("Images/intro_background.png")
 
-    makeMusic("Start.mp3")
+    makeMusic("Sounds/Start.mp3")
     playMusic(loops=-1)
 
-    Title = makeSprite("Space_Racer_Title.png")
+    Title = makeSprite("Images/Space_Racer_Title.png")
     moveSprite(Title, 320, 30)
     showSprite(Title)
 
@@ -46,13 +46,13 @@ def gameLoop():
 
     #Setting up screen size, background images, and clock
 
-    setBackgroundImage("Space.png")
+    setBackgroundImage("Images/Space.png")
 
     pause(300)
 
     #Background music
 
-    makeMusic("Theme.wav")
+    makeMusic("Sounds/Theme.wav")
     playMusic(loops=-1)
 
     #Setting a scoreboard
@@ -68,12 +68,12 @@ def gameLoop():
 
     #Creating sprite and alternate image for sprite
 
-    Rocket = makeSprite("Rocket_no_thrust.png")
-    addSpriteImage(Rocket, "Rocket_thrust.png")
-    addSpriteImage(Rocket, "Rocket_crash.png")
+    Rocket = makeSprite("Images/Rocket_no_thrust.png")
+    addSpriteImage(Rocket, "Images/Rocket_thrust.png")
+    addSpriteImage(Rocket, "Images/Rocket_crash.png")
     showSprite(Rocket)
-    thrustSound = makeSound("Thruster.wav")
-    crashSound = makeSound("Explode.wav")
+    thrustSound = makeSound("Sounds/Thruster.wav")
+    crashSound = makeSound("Sounds/Explode.wav")
 
     #Starting position of spaceship
 
@@ -87,7 +87,7 @@ def gameLoop():
 
     asteroids = [] # Creates a list called asteroids
     for x in range(1):
-        thisAsteroid = makeSprite("Asteroid.png")
+        thisAsteroid = makeSprite("Images/Asteroid.png")
 
         thisAsteroid.x = random.randint(600, 1400)
         thisAsteroid.y = random.randint(400, 800)
@@ -101,7 +101,7 @@ def gameLoop():
 
     ufo = [] # Creates a list called ufo
     for x in range(1):
-        thisUfo = makeSprite("UFO.png")
+        thisUfo = makeSprite("Images/UFO.png")
 
         thisUfo.x = random.randint(600, 1400)
         thisUfo.y = random.randint(400, 800)
@@ -115,7 +115,7 @@ def gameLoop():
 
     satellite = [] # Creates a list called satellite
     for x in range(1):
-        thisSatellite = makeSprite("Satellite.png")
+        thisSatellite = makeSprite("Images/Satellite.png")
 
         thisSatellite.x = random.randint(200, 1400)
         thisSatellite.y = random.randint(600, 800)
