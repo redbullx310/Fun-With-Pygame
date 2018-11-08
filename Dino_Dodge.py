@@ -7,20 +7,20 @@ def startScreen():
 
     #Set up introduction screen
 
-    setBackgroundImage("dino_dodge_intro_background.jpg")
+    setBackgroundImage("Images/dino_dodge_intro_background.jpg")
 
-    makeMusic("dino_dodge_intro.mp3")
+    makeMusic("Sounds/dino_dodge_intro.mp3")
     playMusic(loops=-1)
 
-    Title = makeSprite("dino_dodge_title.png")
+    Title = makeSprite("Images/dino_dodge_title.png")
     moveSprite(Title, 350, 150)
     showSprite(Title)
 
-    character = makeSprite("dino.gif")
+    character = makeSprite("Images/dino.gif")
     moveSprite(character, 320, 150)
     showSprite(character)
 
-    goal = makeSprite("flyer_egg.png")
+    goal = makeSprite("Images/flyer_egg.png")
     moveSprite(goal, 570, 180)
     showSprite(goal)
 
@@ -53,9 +53,9 @@ def startScreen():
 
 def game_Loop():
 
-    setBackgroundImage("Prehistoric_background.png")
+    setBackgroundImage("Images/Prehistoric_background.png")
 
-    makeMusic("Dino_dodge_theme.mp3")
+    makeMusic("Sounds/Dino_dodge_theme.mp3")
     playMusic(loops=-1)
 
     # Setting a scoreboard
@@ -68,27 +68,27 @@ def game_Loop():
     scoreBox = makeLabel(str(int(score)), 25, 230, 12, "yellow", "Comic Sans MS")
     showLabel(scoreBox)
 
-    gust = makeSound("hiding_sound.wav")
+    gust = makeSound("Sounds/hiding_sound.wav")
 
-    wind = makeSprite("gust_of_wind.png")
+    wind = makeSprite("Images/gust_of_wind.png")
 
-    die = makeSprite("die.png")
+    die = makeSprite("Images/die.png")
 
-    caught = makeSound("caught.wav")
+    caught = makeSound("Sounds/caught.wav")
 
-    collect = makeSound("collect.wav")
+    collect = makeSound("Sounds/collect.wav")
 
     width = 5
 
-    bushes = makeSprite("hiding_bush.png")
+    bushes = makeSprite("Images/hiding_bush.png")
     moveSprite(bushes, 0, 290)
     showSprite(bushes)
 
-    bushes1 = makeSprite("hiding_bush.png")
+    bushes1 = makeSprite("Images/hiding_bush.png")
     moveSprite(bushes1, 300, 290)
     showSprite(bushes1)
 
-    bushes2 = makeSprite("hiding_bush.png")
+    bushes2 = makeSprite("Images/hiding_bush.png")
     moveSprite(bushes2, 550, 290)
     showSprite(bushes2)
 
@@ -96,17 +96,17 @@ def game_Loop():
 
     dino = []  # Creates a list called dino
     for x in range(1):
-        thisDino = makeSprite("dino1.png")
-        addSpriteImage(thisDino, "dino2.png")  # Add extra images. They are stored in the Sprite object
-        addSpriteImage(thisDino, "dino3.png")  # but not displayed yet
-        addSpriteImage(thisDino, "dino4.png")
-        addSpriteImage(thisDino, "dino5.png")
-        addSpriteImage(thisDino, "dino6.png")
-        addSpriteImage(thisDino, "dino7.png")
-        addSpriteImage(thisDino, "dino8.png")
-        addSpriteImage(thisDino, "dino9.png")
-        addSpriteImage(thisDino, "dino9.png")
-        addSpriteImage(thisDino, "dino10.png")
+        thisDino = makeSprite("Images/dino1.png")
+        addSpriteImage(thisDino, "Images/dino2.png")  # Add extra images. They are stored in the Sprite object
+        addSpriteImage(thisDino, "Images/dino3.png")  # but not displayed yet
+        addSpriteImage(thisDino, "Images/dino4.png")
+        addSpriteImage(thisDino, "Images/dino5.png")
+        addSpriteImage(thisDino, "Images/dino6.png")
+        addSpriteImage(thisDino, "Images/dino7.png")
+        addSpriteImage(thisDino, "Images/dino8.png")
+        addSpriteImage(thisDino, "Images/dino9.png")
+        addSpriteImage(thisDino, "Images/dino9.png")
+        addSpriteImage(thisDino, "Images/dino10.png")
 
         thisDino.x = random.randint(0, 0)
         thisDino.y = random.randint(305, 305)
@@ -119,16 +119,16 @@ def game_Loop():
 
         dino.append(thisDino)
 
-        # Raptor movement with speed and position
+    # Raptor movement with speed and position
 
     raptor = []  # Creates a list called raptor
     for x in range(1):
-        thisRaptor = makeSprite("raptor1.png")
-        addSpriteImage(thisRaptor, "raptor2.png")
-        addSpriteImage(thisRaptor, "raptor3.png")
-        addSpriteImage(thisRaptor, "raptor4.png")
-        addSpriteImage(thisRaptor, "raptor5.png")
-        addSpriteImage(thisRaptor, "raptor6.png")
+        thisRaptor = makeSprite("Images/raptor1.png")
+        addSpriteImage(thisRaptor, "Images/raptor2.png")
+        addSpriteImage(thisRaptor, "Images/raptor3.png")
+        addSpriteImage(thisRaptor, "Images/raptor4.png")
+        addSpriteImage(thisRaptor, "Images/raptor5.png")
+        addSpriteImage(thisRaptor, "Images/raptor6.png")
 
         thisRaptor.x = random.randint(200, 200)
         thisRaptor.y = random.randint(410, 410)
@@ -144,12 +144,12 @@ def game_Loop():
 
     raptor2 = []
     for x in range(1):
-        thisRaptor2 = makeSprite("raptor7.png")
-        addSpriteImage(thisRaptor2, "raptor8.png")
-        addSpriteImage(thisRaptor2, "raptor9.png")
-        addSpriteImage(thisRaptor2, "raptor10.png")
-        addSpriteImage(thisRaptor2, "raptor11.png")
-        addSpriteImage(thisRaptor2, "raptor12.png")
+        thisRaptor2 = makeSprite("Images/raptor7.png")
+        addSpriteImage(thisRaptor2, "Images/raptor8.png")
+        addSpriteImage(thisRaptor2, "Images/raptor9.png")
+        addSpriteImage(thisRaptor2, "Images/raptor10.png")
+        addSpriteImage(thisRaptor2, "Images/raptor11.png")
+        addSpriteImage(thisRaptor2, "Images/raptor12.png")
 
         thisRaptor2.x = random.randint(500, 500)
         thisRaptor2.y = random.randint(310, 310)
@@ -165,7 +165,7 @@ def game_Loop():
 
     egg = []  # Creates a list called egg
     for x in range(1):
-        thisEgg = makeSprite("flyer_egg.png")
+        thisEgg = makeSprite("Images/flyer_egg.png")
 
         thisEgg.x = random.randint(1000, 1000)
         thisEgg.y = random.randint(340, 340)
@@ -178,25 +178,25 @@ def game_Loop():
 
         # Countdown to game start
 
-        countdown3 = makeSprite("countdown3.png")
+        countdown3 = makeSprite("Images/countdown3.png")
         moveSprite(countdown3, 460, 150)
         showSprite(countdown3)
         pause(1000)
         hideSprite(countdown3)
 
-        countdown2 = makeSprite("countdown2.png")
+        countdown2 = makeSprite("Images/countdown2.png")
         moveSprite(countdown2, 460, 150)
         showSprite(countdown2)
         pause(1000)
         hideSprite(countdown2)
 
-        countdown1 = makeSprite("countdown1.png")
+        countdown1 = makeSprite("Images/countdown1.png")
         moveSprite(countdown1, 460, 150)
         showSprite(countdown1)
         pause(1000)
         hideSprite(countdown1)
 
-        countdown0 = makeSprite("countdown0.png")
+        countdown0 = makeSprite("Images/countdown0.png")
         moveSprite(countdown0, 380, 150)
         showSprite(countdown0)
         pause(1000)
