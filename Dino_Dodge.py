@@ -16,7 +16,7 @@ def startScreen():
     moveSprite(Title, 350, 150)
     showSprite(Title)
 
-    character = makeSprite("Images/dino.gif")
+    character = makeSprite("Images/dino1.png")
     moveSprite(character, 320, 150)
     showSprite(character)
 
