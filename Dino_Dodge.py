@@ -1,6 +1,15 @@
 from pygame_functions import *
 import random
 
+# This function will spawn an egg at a random x location between 100 and 1000, then return the reference of the newly created egg
+def spawnEgg():
+    egg = makeSprite("Images/flyer_egg.png")
+    egg.x = random.randint(100, 1000)
+    egg.y = 340
+    moveSprite(egg, egg.x, egg.y)
+    showSprite(egg)
+    return egg  # return the variable egg to the caller
+
 def startScreen():
 
     screenSize(1024, 465)
@@ -52,7 +61,6 @@ def startScreen():
 
 
 def game_Loop():
-
     setBackgroundImage("Images/Prehistoric_background.png")
 
     makeMusic("Sounds/Dino_dodge_theme.mp3")
@@ -112,8 +120,8 @@ def game_Loop():
         thisDino.y = random.randint(305, 305)
         moveSprite(thisDino, thisDino.x, thisDino.y)
 
-        thisDino.xspeed = random.randint(1, 1)
-        thisDino.xspeed1 = random.randint(-1, -1)
+        thisDino.xspeed = 7
+        thisDino.xspeed1 = -5
         thisDino.yspeed = random.randint(0, 0)
         showSprite(thisDino)
 
@@ -134,7 +142,7 @@ def game_Loop():
         thisRaptor.y = random.randint(410, 410)
         moveSprite(thisRaptor, thisRaptor.x, thisRaptor.y)
 
-        thisRaptor.xspeed = random.randint(2, 2)
+        thisRaptor.xspeed = 7
         thisRaptor.yspeed = random.randint(0, 0)
         showSprite(thisRaptor)
 
@@ -155,57 +163,50 @@ def game_Loop():
         thisRaptor2.y = random.randint(310, 310)
         moveSprite(thisRaptor2, thisRaptor2.x, thisRaptor2.y)
 
-        thisRaptor2.xspeed = random.randint(-2, -2)
+        thisRaptor2.xspeed = -7
         thisRaptor2.yspeed = random.randint(0, 0)
         showSprite(thisRaptor2)
 
         raptor2.append(thisRaptor2)
 
-    # Egg movement with speed and position
+    # Create a list of eggs, spawn the starting egg and add it to the list of eggs
+    eggs = []
+    thisEgg = spawnEgg()  # creates a variable 'thisEgg', and sets it equal to the egg variable created and returned from the spawnEgg function
+    eggs.append(thisEgg)
 
-    egg = []  # Creates a list called egg
-    for x in range(1):
-        thisEgg = makeSprite("Images/flyer_egg.png")
+    # Countdown to game start
 
-        thisEgg.x = random.randint(1000, 1000)
-        thisEgg.y = random.randint(340, 340)
-        moveSprite(thisEgg, thisEgg.x, thisEgg.y)
-        showSprite(thisEgg)
+    countdown3 = makeSprite("Images/countdown3.png")
+    moveSprite(countdown3, 460, 150)
+    showSprite(countdown3)
+    pause(1000)
+    hideSprite(countdown3)
 
-        egg.append(thisEgg)  # This adds thisEgg to the list made at the top
+    countdown2 = makeSprite("Images/countdown2.png")
+    moveSprite(countdown2, 460, 150)
+    showSprite(countdown2)
+    pause(1000)
+    hideSprite(countdown2)
 
-        nextScoreBonus = thisEgg
+    countdown1 = makeSprite("Images/countdown1.png")
+    moveSprite(countdown1, 460, 150)
+    showSprite(countdown1)
+    pause(1000)
+    hideSprite(countdown1)
 
-        # Countdown to game start
-
-        countdown3 = makeSprite("Images/countdown3.png")
-        moveSprite(countdown3, 460, 150)
-        showSprite(countdown3)
-        pause(1000)
-        hideSprite(countdown3)
-
-        countdown2 = makeSprite("Images/countdown2.png")
-        moveSprite(countdown2, 460, 150)
-        showSprite(countdown2)
-        pause(1000)
-        hideSprite(countdown2)
-
-        countdown1 = makeSprite("Images/countdown1.png")
-        moveSprite(countdown1, 460, 150)
-        showSprite(countdown1)
-        pause(1000)
-        hideSprite(countdown1)
-
-        countdown0 = makeSprite("Images/countdown0.png")
-        moveSprite(countdown0, 380, 150)
-        showSprite(countdown0)
-        pause(1000)
-        hideSprite(countdown0)
+    countdown0 = makeSprite("Images/countdown0.png")
+    moveSprite(countdown0, 380, 150)
+    showSprite(countdown0)
+    pause(1000)
+    hideSprite(countdown0)
 
     #Key press functions for dino and frame movement
 
     nextFrame = clock()
     frame = 0
+    mass = 6
+    velocity = 6
+    jumping = False
     while True:
 
         if clock() > nextFrame:  # We only animate our character every 80ms.
@@ -255,6 +256,23 @@ def game_Loop():
             moveSprite(thisDino, thisDino.x, thisDino.y)
             changeSpriteImage(thisDino, 1 * 4 + frame)
             scrollBackground(2, 0)
+
+        # Press the up arrow key to initiate a jump
+        if keyPressed("up") and thisDino.y == 305:
+            jumping = True
+
+        # this will run once the user pressed the up arrow key and the jumping variable is set to True
+        if jumping:
+            force = mass * velocity                       # a basic physics formula for calculating force
+            thisDino.y = thisDino.y - force               # apply the force to the dino (subtracts the calculated force from its current y position, moving it up)
+            moveSprite(thisDino, thisDino.x, thisDino.y)  # move the dino up
+            velocity = velocity - 1                       # subtract 1 from the velocity, so the next force calculation will be smaller. This will eventually reach a
+                                                          # negative number range, which begins the descention of the dino (bringing him back down)
+            if thisDino.y >= 305:                         # If the ground is reached after jumping, reset everything
+                thisDino.y = 305                          # Make sure dino is back to the right y position
+                moveSprite(thisDino, thisDino.x, thisDino.y)
+                velocity = 6                              # reset the velocity
+                jumping = False                           # set jumping to False
 
         if keyPressed("SPACE") and thisDino.x < 232:
             changeSpriteImage(thisDino, 9)
