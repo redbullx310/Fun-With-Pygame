@@ -120,8 +120,8 @@ def game_Loop():
         thisDino.y = random.randint(305, 305)
         moveSprite(thisDino, thisDino.x, thisDino.y)
 
-        thisDino.xspeed = 7
-        thisDino.xspeed1 = -5
+        thisDino.xspeed = 1
+        thisDino.xspeed1 = -1
         thisDino.yspeed = random.randint(0, 0)
         showSprite(thisDino)
 
@@ -142,7 +142,7 @@ def game_Loop():
         thisRaptor.y = random.randint(410, 410)
         moveSprite(thisRaptor, thisRaptor.x, thisRaptor.y)
 
-        thisRaptor.xspeed = 7
+        thisRaptor.xspeed = 2
         thisRaptor.yspeed = random.randint(0, 0)
         showSprite(thisRaptor)
 
@@ -163,7 +163,7 @@ def game_Loop():
         thisRaptor2.y = random.randint(310, 310)
         moveSprite(thisRaptor2, thisRaptor2.x, thisRaptor2.y)
 
-        thisRaptor2.xspeed = -7
+        thisRaptor2.xspeed = -2
         thisRaptor2.yspeed = random.randint(0, 0)
         showSprite(thisRaptor2)
 
@@ -204,8 +204,8 @@ def game_Loop():
 
     nextFrame = clock()
     frame = 0
-    mass = 6
-    velocity = 6
+    mass = 0.8
+    velocity = 0.8
     jumping = False
     while True:
 
@@ -266,7 +266,7 @@ def game_Loop():
             force = mass * velocity                       # a basic physics formula for calculating force
             thisDino.y = thisDino.y - force               # apply the force to the dino (subtracts the calculated force from its current y position, moving it up)
             moveSprite(thisDino, thisDino.x, thisDino.y)  # move the dino up
-            velocity = velocity - 1                       # subtract 1 from the velocity, so the next force calculation will be smaller. This will eventually reach a
+            velocity = velocity - 0.177                    # subtract 0.177 from the velocity, so the next force calculation will be smaller. This will eventually reach a
                                                           # negative number range, which begins the descention of the dino (bringing him back down)
             if thisDino.y >= 305:                         # If the ground is reached after jumping, reset everything
                 thisDino.y = 305                          # Make sure dino is back to the right y position
