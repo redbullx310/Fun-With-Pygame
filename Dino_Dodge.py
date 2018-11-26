@@ -266,7 +266,7 @@ def game_Loop():
             force = mass * velocity                       # a basic physics formula for calculating force
             thisDino.y = thisDino.y - force               # apply the force to the dino (subtracts the calculated force from its current y position, moving it up)
             moveSprite(thisDino, thisDino.x, thisDino.y)  # move the dino up
-            velocity = velocity - 0.177                    # subtract 0.177 from the velocity, so the next force calculation will be smaller. This will eventually reach a
+            velocity = velocity - 0.163                    # subtract 0.163 from the velocity, so the next force calculation will be smaller. This will eventually reach a
                                                           # negative number range, which begins the descention of the dino (bringing him back down)
             if thisDino.y >= 305:                         # If the ground is reached after jumping, reset everything
                 thisDino.y = 305                          # Make sure dino is back to the right y position
