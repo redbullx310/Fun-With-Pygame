@@ -1,5 +1,4 @@
 from pygame_functions import *
-import random
 
 
 def startScreen():
@@ -8,7 +7,7 @@ def startScreen():
 
     setBackgroundImage("Images/Intro_Background.jpg")
 
-    makeMusic("Sounds/Intro_Theme.wav")
+    makeMusic("Sounds/Main_Menu_Theme.wav")
     playMusic(loops=-1)
 
     title = makeSprite("Images/Title.png")
@@ -31,19 +30,22 @@ def startScreen():
     moveSprite(subtext4, 280, 560)
     showSprite(subtext4)
 
-    directions = makeSprite("Images/Directions.png")
-    moveSprite(directions, 150, 430)
-    showSprite(directions)
+    newGame = makeSprite("Images/New_Game.png")
+    moveSprite(newGame, 325, 400)
+    showSprite(newGame)
 
-    directions2 = makeSprite("Images/Directions2.png")
-    moveSprite(directions2, 290, 470)
-    showSprite(directions2)
+    sword1 = makeSprite("Images/Sword_Icon_New_Game.png")
+    moveSprite(sword1, 260, 450)
+    showSprite(sword1)
+    sword2 = makeSprite("Images/Sword_Icon_New_Game1.png")
+    moveSprite(sword2, 570, 450)
+    showSprite(sword2)
 
     intro = True
 
     while intro:
 
-        if keyPressed("p"):
+        if spriteClicked(newGame):
             intro = False
             break
         if keyPressed("q"):
@@ -54,12 +56,30 @@ def startScreen():
     hideSprite(subtext2)
     hideSprite(subtext3)
     hideSprite(subtext4)
-    hideSprite(directions)
-    hideSprite(directions2)
+    hideSprite(newGame)
+    hideSprite(sword1)
+    hideSprite(sword2)
     stopMusic()
 
 
 def gameLoop():
+
+    def leveling():
+        lvl = 1
+        xp = 0
+        lvlNext = 25
+
+        pStr = 0
+        pEnd = 0
+        pDex = 0
+
+        while xp >= lvlNext:
+            lvl += 1
+            xp = xp - lvlNext
+            lvlNext = round(lvlNext * 1.5)
+        print("Level: ", lvl)
+        print("Exp: ", xp)
+        print("Next: ", lvlNext)
 
     width = 30
 
@@ -94,6 +114,14 @@ def gameLoop():
     zafira2 = makeLabel("Please return when you are able.", 14, 415, 600, "red")
     zafira3 = makeLabel("We must restore peace to the kingdom!", 14, 400, 600, "red")
     zafira0 = makeLabel("(Press C to continue)", 14, 440, 620, "red")
+    battle = makeSprite("Images/Player_Character_Battle_Stance.png")
+    orcbattle = makeSprite("Images/Orc_Battle_Stance.png")
+    talk3 = makeSprite("Images/Talk_Box.png")
+    orc1 = makeLabel("Your Queen is mine. Prepare to die!", 14, 410, 600, "red")
+    orc0 = makeLabel("(Press C to continue)", 14, 440, 620, "red")
+    offense = makeSprite("Images/Attack_Icon.png")
+    attack = makeSprite("Images/Player_Character_Attack_Right1.png")
+    orcattack = makeSprite("Images/Orc_Attack_Right1.png")
 
     player = []  # Creates a list called player
     for x in range(1):
@@ -133,17 +161,9 @@ def gameLoop():
         addSpriteImage(thisPlayer, "Images/Player_Character_Walk_Left7.png")
         addSpriteImage(thisPlayer, "Images/Player_Character_Walk_Left8.png")
         addSpriteImage(thisPlayer, "Images/Player_Character_Walk_Left9.png")
-        addSpriteImage(thisPlayer, "Images/Player_Character_Attack_Down1.png")
-        addSpriteImage(thisPlayer, "Images/Player_Character_Attack_Up1.png")
-        addSpriteImage(thisPlayer, "Images/Player_Character_Attack_Right1.png")
-        addSpriteImage(thisPlayer, "Images/Player_Character_Attack_Left1.png")
-
 
         thisPlayer.x = 400
         thisPlayer.y = 450
-
-        thisPlayer.xspeed = random.randint(1, 1)
-        thisPlayer.yspeed = random.randint(1, 1)
 
         moveSprite(thisPlayer, thisPlayer.x, thisPlayer.y)
         showSprite(thisPlayer)
@@ -152,7 +172,7 @@ def gameLoop():
 
         orc = [] # Creates a list called orc
         for x in range(1):
-            thisOrc = makeSprite("Orc_Walk_Left1.png")
+            thisOrc = makeSprite("Images/Orc_Walk_Left1.png")
             addSpriteImage(thisOrc, "Images/Orc_Walk_Left2.png")
             addSpriteImage(thisOrc, "Images/Orc_Walk_Left3.png")
             addSpriteImage(thisOrc, "Images/Orc_Walk_Left4.png")
@@ -165,14 +185,14 @@ def gameLoop():
             thisOrc.x = 755
             thisOrc.y = 900
 
-            thisOrc.xspeed = random.randint(0, 0)
-            thisOrc.yspeed = random.randint(0, 0)
+            thisOrc.xspeed = 0
+            thisOrc.yspeed = 0
 
             moveSprite(thisOrc, thisOrc.x, thisOrc.y)
 
             orc.append(thisOrc)
 
-        queen = []  # Creates a list called orc
+        queen = []  # Creates a list called queen
         for x in range(1):
             thisQueen = makeSprite("Images/Queen_Walk_Right1.png")
             addSpriteImage(thisQueen, "Images/Queen_Walk_Right2.png")
@@ -188,6 +208,25 @@ def gameLoop():
 
             queen.append(thisQueen)
 
+            arrow = []  # Creates a list called arrow
+            for x in range(1):
+                thisArrow = makeSprite("Images/Arrow1.png")
+                addSpriteImage(thisArrow, "Images/Arrow2.png")
+                addSpriteImage(thisArrow, "Images/Arrow3.png")
+                addSpriteImage(thisArrow, "Images/Arrow4.png")
+                addSpriteImage(thisArrow, "Images/Arrow5.png")
+                addSpriteImage(thisArrow, "Images/Arrow6.png")
+                addSpriteImage(thisArrow, "Images/Arrow7.png")
+                addSpriteImage(thisArrow, "Images/Arrow8.png")
+                addSpriteImage(thisArrow, "Images/Arrow9.png")
+
+                thisArrow.x = 680
+                thisArrow.y = 385
+
+                moveSprite(thisArrow, thisArrow.x, thisArrow.y)
+
+                arrow.append(thisArrow)
+
         # Key press functions for player and frame movement
 
         nextFrame = clock()
@@ -200,7 +239,7 @@ def gameLoop():
                 nextFrame += 80  # so the modulus 8 allows it to loop
 
             if nextFrame:
-                changeSpriteImage(thisOrc, 0 * 8 + frame)
+                changeSpriteImage(thisArrow, 0 * 8 + frame)
 
             if keyPressed("right"):
                 for thisPlayer in player:
@@ -237,11 +276,6 @@ def gameLoop():
                     thisPlayer.y += 2
                     if thisPlayer.y > 630:
                         thisPlayer.y = 610 + width
-
-            if keyPressed("space"):
-                    changeSpriteImage(thisPlayer, 38)
-                    tick(5)
-                    changeSpriteImage(thisPlayer, 18)
 
             # This moves the orc by its speed
 
@@ -340,14 +374,14 @@ def gameLoop():
 
             if touching(thisPlayer, flag3):
                 stopMusic()
+                makeMusic("Sounds/Forest_Theme.mp3")
+                playMusic(loops=-1)
                 pause(500)
                 hideSprite(flag)
                 moveSprite(flag, -5000, -5000)
                 hideSprite(flag3)
                 moveSprite(flag3, 4800, 4800)
                 setBackgroundImage(["Images/Forest.png"])
-                makeMusic("Sounds/Battle_Theme.wav")
-                playMusic(loops=-1)
                 moveSprite(thisPlayer, 0, 500)
                 thisPlayer.x = 0
                 thisPlayer.y = 500
@@ -362,29 +396,74 @@ def gameLoop():
                 showSprite(gate)
 
             if touching(thisPlayer, thisOrc):
-                if keyPressed("space"):
-                    tick(2000)
-                    killSprite(thisOrc)
-                    moveSprite(gate, 1024, 1024)
-                    hideSprite(gate)
-                    pause(1000)
-                    moveSprite(saved, 955, 520)
-                    showSprite(saved)
+                thisPlayer.x = 745
+                moveSprite(talk3, 360, 540)
+                showSprite(talk3)
+                showLabel(orc0)
+                showLabel(orc1)
+                if keyPressed("c"):
                     stopMusic()
-                    queen_saved = makeSound("Sounds/Queen_Saved.wav")
-                    playSound(queen_saved, loops=0)
-                    pause(500)
-                    hideSprite(saved)
-                    pause(500)
-                    rush = makeSprite("Images/gust_of_wind.png")
-                    moveSprite(rush, 910, 580)
+                    moveLabel(orc0, 2845, 2845)
+                    moveLabel(orc1, 2845, 2845)
+                    hideSprite(wall)
+                    hideSprite(wall2)
+                    hideSprite(gate)
                     hideSprite(queen_danger)
-                    showSprite(rush)
-                    dash = makeSound("Sounds/hiding_sound.wav")
-                    playSound(dash, loops=0)
-                    pause(100)
-                    hideSprite(rush)
-                    showSprite(thisQueen)
+                    setBackgroundImage("Images/Battle_Background.png")
+                    makeMusic("Sounds/Battle_Theme.wav")
+                    playMusic(loops=-1)
+                    hideSprite(thisPlayer)
+                    moveSprite(battle, 250, 425)
+                    showSprite(battle)
+                    hideSprite(thisOrc)
+                    moveSprite(orcbattle, 685, 425)
+                    showSprite(orcbattle)
+                    moveSprite(offense, 445, 570)
+                    showSprite(offense)
+                if spriteClicked(offense):
+                    showSprite(thisArrow)
+                if spriteClicked(orcbattle):
+                    hideSprite(thisArrow)
+                    hideSprite(battle)
+                    moveSprite(attack, 250, 425)
+                    showSprite(attack)
+                    pause(300)
+                    hideSprite(attack)
+                    showSprite(battle)
+                    pause(2000)
+                    hideSprite(orcbattle)
+                    moveSprite(orcattack, 685, 425)
+                    showSprite(orcattack)
+                    pause(300)
+                    hideSprite(orcattack)
+                    showSprite(orcbattle)
+
+
+
+
+                 #   tick(2000)
+                  #  killSprite(thisOrc)
+                   # moveSprite(gate, 1024, 1024)
+                    #hideSprite(gate)
+                    #pause(1000)
+                    #moveSprite(saved, 955, 520)
+                    #showSprite(saved)
+                    #stopMusic()
+                    #queen_saved = makeSound("Queen_Saved.wav")
+                    #playSound(queen_saved, loops=0)
+                    #pause(500)
+                    #hideSprite(saved)
+                    #pause(500)
+                    #rush = makeSprite("gust_of_wind.png")
+                    #moveSprite(rush, 910, 580)
+                    #hideSprite(queen_danger)
+                    #showSprite(rush)
+                    #dash = makeSound("hiding_sound.wav")
+                    #playSound(dash, loops=0)
+                    #pause(100)
+                    #hideSprite(rush)
+                    #showSprite(thisQueen)
+
             if touching(thisPlayer, thisQueen):
                 moveSprite(talk2, 360, 540)
                 showSprite(talk2)
